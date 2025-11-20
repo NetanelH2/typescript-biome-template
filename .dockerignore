@@ -12,8 +12,6 @@ README.md
 docs/
 .github/
 .husky/
-test-results/
-playwright-report/
 *.log
 .DS_Store
 *.swp

@@ -1,0 +1,2 @@
+# Run linting and formatting checks before pushing code
+npm run check

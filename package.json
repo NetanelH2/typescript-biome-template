@@ -5,19 +5,13 @@
 	"main": "dist/index.js",
 	"type": "module",
 	"scripts": {
-		"dev": "ts-node src/index.ts",
-		"build": "tsc",
-		"format": "biome format --write .",
-		"lint": "biome lint .",
-		"check": "biome check --write .",
+		"build": "docker compose build",
 		"type-check": "tsc --noEmit",
-		"prepare": "husky"
+		"pre-commit": "lint-staged",
+		"prepare": "husky",
+		"trigger-ci": "git commit --allow-empty -m \"trigger CI workflows for testing\" && git push",
+		"check": "npx @biomejs/biome check --write"
 	},
-	"keywords": [
-		"typescript",
-		"biome",
-		"template"
-	],
 	"author": "",
 	"license": "MIT",
 	"devDependencies": {
