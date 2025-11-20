@@ -1,11 +1,11 @@
 {
 	"name": "typescript-biome-template",
 	"version": "1.0.0",
-	"description": "A TypeScript project template with Biome for linting and formatting",
+	"description": "A TypeScript project template with Biome for linting and formatting, Husky for Git hooks, and lint-staged for pre-commit checks",
 	"main": "dist/index.js",
 	"type": "module",
 	"scripts": {
-		"build": "docker compose build",
+		"build": "tsc",
 		"type-check": "tsc --noEmit",
 		"pre-commit": "lint-staged",
 		"prepare": "husky",

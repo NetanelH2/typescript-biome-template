@@ -1,0 +1,42 @@
+name: Code Quality
+
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+    branches: [main, develop]
+
+jobs:
+  quality:
+    name: Biome Quality Check
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+        with:
+          persist-credentials: false
+
+      - name: Setup Biome
+        uses: biomejs/setup-biome@v2
+        with:
+          version: latest
+
+      - name: Run Biome
+        run: biome ci .
+
+  summary:
+    name: Add Results Summary
+    runs-on: ubuntu-latest
+    needs: [quality]
+    if: always()
+    timeout-minutes: 5
+    steps:
+      - name: Add results to summary
+        run: |
+          echo "✅ Code Quality Check Completed" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "🛡️ Quality Gates: Biome (Linting + Formatting)" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "⏰ Check completed at: $(date)" >> $GITHUB_STEP_SUMMARY
