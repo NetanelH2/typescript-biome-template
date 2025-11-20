@@ -10,7 +10,7 @@
 		"pre-commit": "lint-staged",
 		"prepare": "husky",
 		"trigger-ci": "git commit --allow-empty -m \"trigger CI workflows for testing\" && git push",
-		"check": "npx @biomejs/biome check --write"
+		"check": "npx @biomejs/biome check --write --error-on-warnings"
 	},
 	"author": "",
 	"license": "MIT",
@@ -24,7 +24,7 @@
 	},
 	"lint-staged": {
 		"*.{ts,tsx,js,jsx,json}": [
-			"biome check --write --no-errors-on-unmatched"
+			"biome check --write --error-on-warnings"
 		]
 	}
 }
